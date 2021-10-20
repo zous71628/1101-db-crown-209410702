@@ -1,14 +1,15 @@
 const { Pool } = require('pg');
-
+let pool
 const isProduction = process.env.NODE_ENV === 'production';
+
 if (isProduction) {
-  const pool = new Pool({
+    pool = new Pool({
     connectionString: isProduction
       ? process.env.DATABASE_URL
       : `postgresql://postgres:0000@localhost:5432/crown_02`,
   });
 } else {
-  const pool = new Pool({
+    pool = new Pool({
     user: 'postgres',
     host: 'localhost',
     database: 'crown_02',
